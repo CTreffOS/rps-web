@@ -6,7 +6,9 @@
     <link rel="stylesheet" type="text/css" href="res/global.css" />
   </head>
   <body>
-    <div id="nav">
+    <div id="head">
+      <center><img src="res/img/normal.png" alt="Chaostreff Osnabrück"/>
+      <h1>RPS Coding Competition</h1></center>
     </div>
     <div id="content">
     </div>

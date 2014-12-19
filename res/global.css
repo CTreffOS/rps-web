@@ -1,0 +1,20 @@
+body {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 25px;
+  text-align: justify;
+  text-justify: auto;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  padding: 25px;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+}
+#content {
+  min-height:300px;
+}
+
+
+
