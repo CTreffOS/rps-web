@@ -1,4 +1,5 @@
 <?php
+session_start();
 function sw($name)
 {
   switch($name) 
@@ -11,6 +12,10 @@ function sw($name)
       break;
     case 'authp':
       return 'inc/auth.php';
+      break;
+    case 'sclose':
+      return 'inc/session_close.php';
+      break;
     default:
       return 'html/auth.html';
   }
@@ -38,7 +43,7 @@ function sw($name)
         require_once(sw($site));?>
     </div>
     <div id="footer">
-      <img src="http://php.net/images/logo.php" alt="pElofant" />
+     <?php if(isset($_SESSION['voucher'])) if($_SESSION['voucher']==true)echo('<a href="index.php?site=sclose">New Upload</a>'); ?>
     </div>
   </body>
 </html>

@@ -1,29 +1,38 @@
 <?php
+  if(!isset($_POST['code']))
+  {
+    $code = false;
+  }
+  else
+  {
+    $code = $_POST['code'];
+  }
   if(!isset($_SESSION['voucher'])||$_SESSION['voucher']==false)
   {
-    session_start();
     $db = new PDO('sqlite:web.db');
-    $code = $_POST['code'];
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $query = $db->prepare('SELECT code FROM codes');
     $query->execute();
     $dbcodes = $query->fetchALL(PDO::FETCH_COLUMN, 0);
     if(in_array($code, $dbcodes))
     {
-     echo('Erfolgreich');
+     echo('Code check was successful, please click <a href="index.php?site=register">here</a> to get to registration form.');
      $_SESSION['voucher'] = true;
-     $query->prepare('DELETE FROM codes WHERE code='.$code.'');
+     $query= $db->prepare('DELETE FROM codes WHERE code=:code');
+     $query->bindParam(':code', $code, PDO::PARAM_INT);
      $query->execute();
-     $query->perpare('INSERT INTO users (code) VALUES ('.$code.')');
+     $query= $db->prepare('INSERT INTO users (code) VALUES (:code)');
+     $query->bindParam(':code', $code, PDO::PARAM_INT);
      $query->execute();
     }
     else
     {
-      echo('Authentication failed, please try again');
+     echo('Authentication failed, get <a href="index.php">back</a> and try again. If you have any trouble contact CTreffOS Member.');
     }
   }
-  else if($_SESSION['voucher']==true)
+  else
   {
-    echo('NAme und co');
+     echo('Code check was successful, please click <a href="index.php?site=register">here</a> to get to registration form.');
   }
 
 ?>  
