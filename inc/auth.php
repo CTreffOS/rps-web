@@ -16,15 +16,16 @@
     $dbcodes = $query->fetchALL(PDO::FETCH_COLUMN, 0);
     if(in_array($code, $dbcodes))
     {
-     echo('Code check was successful, please click <a href="index.php?site=register">here</a> to get to registration form.');
      $_SESSION['voucher'] = true;
+     $_SESSION['code']= $code;
      $query= $db->prepare('DELETE FROM codes WHERE code=:code');
      $query->bindParam(':code', $code, PDO::PARAM_INT);
      $query->execute();
      $query= $db->prepare('INSERT INTO users (code) VALUES (:code)');
      $query->bindParam(':code', $code, PDO::PARAM_INT);
-     $query->execute();
-    }
+     if($query->execute()) echo('Code check was successful, please click <a href="index.php?site=register">here</a> to get to registration form.');
+      else echo('Authentication failed, get <a href="index.php">back</a> and try again. If you have any trouble contact CTreffOS Member.');
+   }
     else
     {
      echo('Authentication failed, get <a href="index.php">back</a> and try again. If you have any trouble contact CTreffOS Member.');

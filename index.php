@@ -16,6 +16,9 @@ function sw($name)
     case 'sclose':
       return 'inc/session_close.php';
       break;
+    case 'registerp':
+      return 'inc/register.php';
+      break;
     default:
       return 'html/auth.html';
   }
