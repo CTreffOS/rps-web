@@ -21,9 +21,10 @@ class sql():
     def isnew(self, number):
         sql.__cur.execute('SELECT count(*) FROM codes WHERE code = ?', (number,))
         if(sql.__cur.fetchall() == 0):
-            return True
-        else:
-            return False
+            sql.__cur.execute('SELECT count(*) FROM users WHERE code = ?', (number,))
+            if(sql.__cur.fetchall() == 0):
+                return True
+        return False
 
 
 class rand():
