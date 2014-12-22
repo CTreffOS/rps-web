@@ -19,6 +19,15 @@ function sw($name)
     case 'registerp':
       return 'inc/register.php';
       break;
+    case 'uploadp':
+      return 'inc/upload.php';
+      break;
+    case 'docker':
+      return 'html/docker.html';
+      break;
+    case 'dockerp':
+      return 'inc/docker.php';
+      break;
     default:
       return 'html/auth.html';
   }
