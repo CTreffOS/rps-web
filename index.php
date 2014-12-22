@@ -55,7 +55,7 @@ function sw($name)
         require_once(sw($site));?>
     </div>
     <div id="footer">
-     <?php if(isset($_SESSION['voucher'])) if($_SESSION['voucher']==true)echo('<a href="index.php?site=sclose">New Upload</a>'); ?>
+     <?php if(isset($_SESSION['voucher'])) if($_SESSION['voucher']==true)echo('<a href="index.php?site=sclose">End session</a>'); ?>
     </div>
   </body>
 </html>
