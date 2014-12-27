@@ -47,7 +47,7 @@ if(isset($_SESSION['code'])&& $_SESSION['voucher']&& isset($_SESSION['username']
         echo('Your upload was successful!');
         require_once('inc/session_close.php');
         $sqlfile = fopen("upload/".$dirname."/insert.sql", "w") or die("Error while saving file!");
-        $content = "insert into user (name, email, code, docker_image) values ('".$username."', '".$result[0]['email']."', '".$code."', 'rockpaperscissors/player');";
+        $content = "insert into user (name, email, code, docker_image) values ('".$username."', '".$result[0]['email']."', '".$code."', 'rockpaperscissors/".code."');";
         fwrite($sqlfile, $content);
         fclose($sqlfile);
       }
