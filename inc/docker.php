@@ -9,7 +9,7 @@ if(isset($_SESSION['code'])&& $_SESSION['voucher']&& isset($_SESSION['username']
   $docker = $_POST['docker'];
   $username = $_SESSION['username'];
   $code = $_SESSION['code'];
-  $db = new PDO('sqlite:web.db');
+  $db = new PDO('sqlite:/var/www/html/rps-web/db/web.db');
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $query = $db->prepare('SELECT username, email, dect, code FROM users WHERE code = :code LIMIT 1');
   $query->bindParam(':code', $code, PDO::PARAM_INT);
@@ -17,6 +17,7 @@ if(isset($_SESSION['code'])&& $_SESSION['voucher']&& isset($_SESSION['username']
   $result = $query->fetchALL();
   if(($username==$result[0]['username'])&&($code==$result[0]['code']))
   {
+	date_default_timezone_set('Europe/Berlin');
     $date=new DateTime();
     $dirname = $username.$date->getTimestamp();
     $target_dir = 'upload/'.$dirname.'/';

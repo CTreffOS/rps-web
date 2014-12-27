@@ -11,7 +11,7 @@ class sql():
         sql.__con.close()
 
     def connect(self):
-        sql.__con = lite.connect('web.db')
+        sql.__con = lite.connect('/var/www/html/rps-web/db/web.db')
         sql.__cur = sql.__con.cursor()
 
     def insert(self, number):
