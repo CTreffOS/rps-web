@@ -22,7 +22,7 @@ if(isset($_SESSION['code'])&& $_SESSION['voucher']&& isset($_SESSION['username']
 		}
 		date_default_timezone_set('Europe/Berlin');
 		$date=new DateTime();
-    $dirname = $username.$date->getTimestamp();
+    $dirname = strtolower($username.$date->getTimestamp());
     $target_dir = 'upload/'.$dirname.'/';
     mkdir('upload/'.$dirname.'', 0777);
     $target_file = $target_dir . basename($_FILES['file']['name']);
@@ -48,7 +48,7 @@ if(isset($_SESSION['code'])&& $_SESSION['voucher']&& isset($_SESSION['username']
         echo('Your upload was successful!');
         require_once('inc/session_close.php');
         $sqlfile = fopen("upload/".$dirname."/insert.sql", "w") or die("Error while saving file!");
-        $content = "insert into user (name, email, code, docker_image) values ('".$username."', '".$result[0]['email']."', '".$code."', 'rockpaperscissors/".code."');";
+		  $content = "insert into user (name, email, code, docker_image) values ('".$username."', '".$result[0]['email']."', '".$code."', 'rpsplayer/".$dirname."');";
         fwrite($sqlfile, $content);
         fclose($sqlfile);
       }
