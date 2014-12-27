@@ -37,3 +37,4 @@
   {
     echo('You are not authenticated. Click <a href="index.php">here</a> to get to authentication form.');
   }
+?>
