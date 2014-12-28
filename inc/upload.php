@@ -22,7 +22,7 @@ if(isset($_SESSION['code'])&& $_SESSION['voucher']&& isset($_SESSION['username']
 		}
 		date_default_timezone_set('Europe/Berlin');
 		$date=new DateTime();
-    $dirname = strtolower($username.$date->getTimestamp());
+    $dirname = strtolower($date->getTimestamp().$username);
     $target_dir = 'upload/'.$dirname.'/';
     mkdir('upload/'.$dirname.'', 0777);
     $target_file = $target_dir . basename($_FILES['file']['name']);
